@@ -241,8 +241,8 @@ while collected_count < max_items:
             color = driver.find_element(By.XPATH, "//span[text()='Cor']/following-sibling::span").text
 
             # Verifica se o produto tem "Últimas Peças"
-            last_pieces = driver.find_elements(By.CLASS_NAME, "tags-list__tag--icon ULTIMAS_PECAS")
-            last_pieces_flag = 1 if last_pieces else 0
+            last_pieces_flag = 1 if driver.find_elements(By.XPATH,
+                                                         "//div[@class='tags-list__tag INCENTIVO']/span[contains(@class, 'ULTIMAS_PECAS')]") else 0
 
             # Insere os dados do produto na tabela SQL
             cursor.execute("""
